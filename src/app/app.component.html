@@ -1,0 +1,29 @@
+<ngx-spinner bdColor="rgba(200, 87, 90,0.50)" size="medium" color="#69f0ae" type="pacman" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>kucher-oleksiy-app-4</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon" (click)="openBucket()">
+      <mat-icon>card_giftcard</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container main-page">
+  <mat-drawer mode="side" opened>
+    <mat-list>
+      <div *ngFor="let group of groups" class="list-item" (click)="filterDishes(group.dishes)">
+        <mat-list-item>{{group.category}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-dishes *ngIf="this.filtredDishes.length" [dishes]="this.filtredDishes" (onAdd)="addToBusket($event)">
+    </app-dishes>
+  </mat-drawer-content>
+</mat-drawer-container>

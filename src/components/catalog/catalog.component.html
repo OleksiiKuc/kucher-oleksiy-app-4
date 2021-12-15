@@ -1,0 +1,7 @@
+<mat-grid-list cols="3" rowHeight="1.5:1">
+  <mat-grid-tile *ngFor="let item of catalog">
+    <img src={{item.image}}><img>
+    <mat-grid-tile-footer>{{item.name}}</mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>
+<app-itemdetail></app-itemdetail>

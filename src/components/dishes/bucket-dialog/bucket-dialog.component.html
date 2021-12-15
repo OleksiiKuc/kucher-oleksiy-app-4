@@ -1,0 +1,35 @@
+<div *ngIf="!data.length;else templateName" style="text-align: center;">
+  The bag is empty
+</div>
+
+<ng-template #templateName>
+  <mat-card class="example-card" *ngFor="let item of data; index as i">
+    <div class="descript">
+      <div class="descript__content">
+        <mat-card-title-group>
+          <mat-card-title style="width: 100px; margin-top: 10px; margin-left: 10px;">
+            {{item.dish.name}}
+            <button mat-mini-fab color="warn" style="font-size: 12px; margin-left: 30px; margin-top: 20px;"
+                    (click)="removeFromBusket(i)">Minus</button>
+          </mat-card-title>
+            <mat-card-subtitle style="margin-top: 40px; margin-left: 15px;">{{item.dish.category}}</mat-card-subtitle>
+            <mat-card-subtitle style="margin-left: 15px;">Price - {{item.dish.price}} $</mat-card-subtitle>
+            <mat-card-subtitle style="margin-left: 15px;">Weight - {{item.dish.weight}} gr</mat-card-subtitle>
+            <mat-card-subtitle style="margin-left: 15px;">Count - {{item.count}}</mat-card-subtitle>
+        </mat-card-title-group>
+
+      </div>
+      <div class="descript__desc">
+        <div class="desc__desc">
+          <mat-card-content>
+            {{item.dish.description}}
+          </mat-card-content>
+        </div>
+        <div class="desc__image">
+          <img class="desc__img" mat-card-lg-image src="{{item.dish.image}}">
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</ng-template>
+

@@ -1,0 +1,39 @@
+<div class="top">
+  <div class="search">
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>Search</mat-label>
+      <input matInput type="text" [(ngModel)]="search" (ngModelChange)="doSearch()">
+      <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div fxLayoutAlign="center" class="catalog-title">
+    <h1>Catalog</h1>
+  </div>
+</div>
+
+<mat-grid-list cols="3" rowHeight="2:3">
+  <mat-grid-tile *ngFor="let dish of this.filtredDishes">
+    <mat-card class="example-card">
+      <img mat-card-image src="{{dish.image}}" alt="Photo of a Shiba Inu">
+      <mat-card-header fxLayoutAlign="center center">
+        <mat-card-title>{{dish.name}}</mat-card-title>
+        <mat-card-subtitle>{{dish.category}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{dish.description}}</p>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button mat-button>Price - {{dish.price}} $</button>
+        <button mat-button>Weight - {{dish.weight}} gr</button>
+        <button mat-mini-fab color="primary" style="font-size: 13px; margin-left: 10px;"
+          (click)="addToBusket(dish)">Plus</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[3, 6, 12, 24]" [showFirstLastButtons]="true"
+  [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)" aria-label="Select page">
+</mat-paginator>
